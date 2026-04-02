@@ -1,0 +1,1076 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>South Yak — Our Story</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --bg:#fcfbff;
+      --bg-soft:#f7f2ff;
+      --panel:#ffffff;
+      --purple:#6f35f5;
+      --purple-dark:#5623d8;
+      --purple-soft:#efe5ff;
+      --text:#211637;
+      --muted:#6b6283;
+      --border:#dfceff;
+      --shadow:0 14px 32px rgba(111,53,245,.10);
+      --radius-xl:28px;
+      --radius-lg:20px;
+      --radius-md:14px;
+      --container:1120px;
+    }
+
+    *{box-sizing:border-box;margin:0;padding:0}
+    html{scroll-behavior:smooth}
+    body{
+      font-family:"Outfit",sans-serif;
+      background:var(--bg);
+      color:var(--text);
+      line-height:1.5;
+    }
+
+    a{text-decoration:none;color:inherit}
+    img{display:block;max-width:100%}
+    .container{width:min(var(--container), calc(100% - 32px));margin:0 auto}
+    .section{padding:78px 0}
+    .section-sm{padding:56px 0}
+    .center{text-align:center}
+
+    .eyebrow{
+      display:inline-block;
+      font-size:11px;
+      text-transform:uppercase;
+      letter-spacing:.14em;
+      color:var(--purple);
+      font-weight:700;
+      margin-bottom:14px;
+    }
+
+    .pill{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      padding:8px 14px;
+      border-radius:999px;
+      background:#f1e9ff;
+      color:var(--purple);
+      font-weight:700;
+      font-size:12px;
+      margin-bottom:18px;
+    }
+
+    h1{
+      font-size:clamp(2.6rem,6vw,4.8rem);
+      line-height:1;
+      letter-spacing:-.045em;
+      margin-bottom:16px;
+    }
+
+    h2{
+      font-size:clamp(2rem,4vw,3.2rem);
+      line-height:1.08;
+      letter-spacing:-.03em;
+      margin-bottom:12px;
+    }
+
+    h3{
+      font-size:1.5rem;
+      line-height:1.1;
+      letter-spacing:-.02em;
+      margin-bottom:8px;
+    }
+
+    p{
+      color:var(--muted);
+      font-size:1rem;
+    }
+
+    .highlight{color:var(--purple)}
+    em{font-style:italic;font-weight:400}
+
+    .btn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap:8px;
+      border:none;
+      border-radius:12px;
+      padding:14px 22px;
+      font-family:inherit;
+      font-weight:700;
+      cursor:pointer;
+      transition:.25s ease;
+    }
+
+    .btn-primary{
+      background:var(--purple);
+      color:#fff;
+      box-shadow:0 10px 20px rgba(111,53,245,.22);
+    }
+
+    .btn-primary:hover{
+      background:var(--purple-dark);
+      transform:translateY(-1px);
+    }
+
+    .btn-outline{
+      background:#fff;
+      color:var(--purple);
+      border:1.5px solid var(--purple);
+    }
+
+    .btn-outline:hover{
+      background:#faf7ff;
+    }
+
+    /* NAV */
+    .nav-wrap{
+      position:sticky;
+      top:0;
+      z-index:1000;
+      background:rgba(252,251,255,.92);
+      backdrop-filter:blur(10px);
+      border-bottom:1px solid rgba(223,206,255,.45);
+    }
+
+    nav{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      height:70px;
+      gap:18px;
+    }
+
+    .brand{
+      display:flex;
+      align-items:center;
+      gap:10px;
+      color:var(--purple);
+      font-weight:800;
+      font-size:1.7rem;
+    }
+
+    .logo{
+      width:20px;height:20px;
+      border:2px solid var(--purple);
+      border-radius:6px;
+      position:relative;
+      transform:rotate(-7deg);
+    }
+
+    .logo::after{
+      content:"";
+      position:absolute;
+      width:8px;height:8px;
+      border-top:2px solid var(--purple);
+      border-right:2px solid var(--purple);
+      right:-1px;top:-5px;
+      border-radius:2px;
+    }
+
+    .nav-links{
+      display:flex;
+      align-items:center;
+      gap:24px;
+      font-size:.93rem;
+      font-weight:600;
+    }
+
+    .nav-links a:hover,
+    .nav-links a.active{
+      color:var(--purple);
+    }
+
+    .menu-toggle{
+      display:none;
+      background:none;
+      border:none;
+      color:var(--purple);
+      font-size:28px;
+      cursor:pointer;
+    }
+
+    /* HERO */
+    .hero{
+      padding:52px 0 44px;
+      background:linear-gradient(180deg,#fcfbff 0%, #faf6ff 100%);
+    }
+
+    .hero-inner{
+      max-width:860px;
+      margin:0 auto;
+    }
+
+    .hero h1{
+      max-width:640px;
+    }
+
+    .hero p{
+      max-width:560px;
+      margin-bottom:26px;
+    }
+
+    .hero-actions{
+      display:flex;
+      gap:14px;
+      flex-wrap:wrap;
+      margin-bottom:16px;
+      max-width:760px;
+    }
+
+    .hero-actions .btn{
+      min-width:240px;
+    }
+
+    .rating{
+      display:flex;
+      align-items:center;
+      gap:10px;
+      color:var(--muted);
+      font-size:.95rem;
+      margin-bottom:16px;
+    }
+
+    .rating .star{
+      color:var(--purple);
+    }
+
+    .hero-line{
+      width:42px;
+      height:3px;
+      border-radius:999px;
+      background:var(--purple);
+    }
+
+    /* ORIGIN */
+    .origin-grid{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:40px;
+      margin-top:28px;
+    }
+
+    .quote{
+      color:var(--purple);
+      margin-top:18px;
+      font-size:1.06rem;
+    }
+
+    /* VALUES */
+    .values{
+      background:#faf6ff;
+    }
+
+    .values-grid{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:22px;
+      margin-top:32px;
+    }
+
+    .value-card{
+      background:#fff;
+      border:1.5px solid #eadfff;
+      border-radius:20px;
+      padding:28px;
+      box-shadow:var(--shadow);
+      text-align:center;
+    }
+
+    .icon{
+      width:42px;height:42px;
+      border-radius:14px;
+      display:grid;
+      place-items:center;
+      margin:0 auto 16px;
+      background:#f2e9ff;
+      color:var(--purple);
+      font-weight:800;
+    }
+
+    .check-list{
+      list-style:none;
+      margin-top:18px;
+      display:grid;
+      gap:10px;
+      text-align:left;
+    }
+
+    .check-list li{
+      color:#4c4165;
+      padding-left:22px;
+      position:relative;
+      font-size:.96rem;
+    }
+
+    .check-list li::before{
+      content:"✓";
+      position:absolute;
+      left:0;
+      top:0;
+      color:var(--purple);
+      font-weight:800;
+    }
+
+    /* TEAM */
+    .team-grid{
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      gap:22px;
+      margin-top:34px;
+      max-width:760px;
+      margin-left:auto;
+      margin-right:auto;
+    }
+
+    .team-card{
+      background:#fff;
+      border:1.5px solid #eadfff;
+      border-radius:20px;
+      padding:20px 20px 18px;
+      text-align:center;
+      box-shadow:0 10px 22px rgba(111,53,245,.07);
+    }
+
+    .avatar{
+      width:84px;
+      height:84px;
+      border-radius:50%;
+      margin:0 auto 14px;
+      position:relative;
+      overflow:hidden;
+      background:
+        linear-gradient(135deg,#f6f0ff,#ecdfff 40%,#fff);
+      border:3px solid #fff;
+      box-shadow:0 6px 18px rgba(111,53,245,.12);
+    }
+
+    .avatar::before{
+      content:"";
+      position:absolute;
+      inset:0;
+      background:
+        radial-gradient(circle at 50% 34%, #3b2a25 0 17%, transparent 18%),
+        radial-gradient(circle at 50% 50%, #efc7a4 0 24%, transparent 25%),
+        radial-gradient(circle at 50% 88%, #5b7ea4 0 31%, transparent 32%);
+      background-repeat:no-repeat;
+    }
+
+    .team-card:nth-child(2) .avatar::before,
+    .team-card:nth-child(5) .avatar::before{
+      background:
+        radial-gradient(circle at 50% 34%, #2a211f 0 17%, transparent 18%),
+        radial-gradient(circle at 50% 50%, #e9bf9d 0 24%, transparent 25%),
+        radial-gradient(circle at 50% 88%, #6f8c7d 0 31%, transparent 32%);
+    }
+
+    .team-card:nth-child(3) .avatar::before,
+    .team-card:nth-child(6) .avatar::before{
+      background:
+        radial-gradient(circle at 50% 34%, #6f4c31 0 17%, transparent 18%),
+        radial-gradient(circle at 50% 50%, #f0c9a6 0 24%, transparent 25%),
+        radial-gradient(circle at 50% 88%, #7b7268 0 31%, transparent 32%);
+    }
+
+    .team-card h4{
+      font-size:1.2rem;
+      margin-bottom:2px;
+    }
+
+    .role{
+      color:var(--purple);
+      font-size:.92rem;
+      margin-bottom:12px;
+    }
+
+    .links{
+      display:grid;
+      gap:6px;
+      justify-content:center;
+    }
+
+    .links a{
+      color:#4e4467;
+      font-size:.92rem;
+    }
+
+    .links a::before{
+      content:"↗";
+      color:var(--purple);
+      margin-right:8px;
+    }
+
+    /* philosophy */
+    .philosophy-grid{
+      display:grid;
+      grid-template-columns:1fr 1.05fr;
+      gap:28px;
+      align-items:center;
+      margin-top:24px;
+    }
+
+    .philosophy-cards{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:14px;
+    }
+
+    .mini-card{
+      background:#efe5ff;
+      border-radius:14px;
+      padding:22px 18px;
+      box-shadow:0 8px 18px rgba(111,53,245,.06);
+      min-height:175px;
+    }
+
+    .mini-card .mini-icon{
+      color:var(--purple);
+      font-size:1.35rem;
+      margin-bottom:10px;
+    }
+
+    .mini-card h4{
+      font-size:1.45rem;
+      line-height:1.1;
+      margin-bottom:8px;
+    }
+
+    .showcase{
+      background:linear-gradient(135deg,#6d35f3,#9f6cff);
+      border-radius:16px;
+      padding:10px;
+      box-shadow:var(--shadow);
+    }
+
+    .showcase-window{
+      border-radius:12px;
+      overflow:hidden;
+      background:#f7f1ff;
+      border:2px solid rgba(255,255,255,.35);
+    }
+
+    .showcase-top{
+      height:16px;
+      background:#e2d2ff;
+      display:flex;
+      align-items:center;
+      gap:5px;
+      padding:0 10px;
+    }
+
+    .showcase-top span{
+      width:7px;height:7px;border-radius:50%;
+      background:#c6abff;
+    }
+
+    .showcase-body{
+      aspect-ratio: 16 / 9;
+      position:relative;
+      background:
+        radial-gradient(circle at 65% 25%, rgba(255,255,255,.35), transparent 18%),
+        radial-gradient(circle at 78% 20%, rgba(255,224,150,.5), transparent 12%),
+        linear-gradient(135deg,#2e173f,#6a31ef 45%, #b080ff 100%);
+      overflow:hidden;
+    }
+
+    .showcase-main{
+      position:absolute;
+      left:16px;
+      top:16px;
+      width:48%;
+      bottom:16px;
+      border-radius:10px;
+      background:
+        radial-gradient(circle at 50% 30%, rgba(255,255,255,.18), transparent 24%),
+        linear-gradient(135deg,#2a103f,#4b1f78 50%, #7f42ff);
+      border:1px solid rgba(255,255,255,.18);
+    }
+
+    .showcase-main::after{
+      content:"▶";
+      position:absolute;
+      width:52px;height:52px;
+      border-radius:50%;
+      left:50%;top:50%;
+      transform:translate(-50%,-50%);
+      display:grid;
+      place-items:center;
+      background:rgba(255,255,255,.92);
+      color:var(--purple);
+      font-size:20px;
+      font-weight:800;
+    }
+
+    .showcase-side{
+      position:absolute;
+      right:16px;
+      top:16px;
+      width:40%;
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:8px;
+    }
+
+    .tile{
+      aspect-ratio: 1.45 / 1;
+      border-radius:8px;
+      background:linear-gradient(135deg,#6d35f3,#b58aff);
+      border:1px solid rgba(255,255,255,.18);
+      position:relative;
+      overflow:hidden;
+    }
+
+    .tile::after{
+      content:"";
+      position:absolute;
+      left:8px;right:8px;bottom:8px;
+      height:5px;
+      border-radius:999px;
+      background:rgba(255,255,255,.4);
+    }
+
+    .showcase-bottom{
+      position:absolute;
+      left:16px;
+      right:16px;
+      bottom:16px;
+      display:grid;
+      grid-template-columns:repeat(5,1fr);
+      gap:8px;
+    }
+
+    .small-tile{
+      height:40px;
+      border-radius:8px;
+      background:linear-gradient(135deg,#4b1f78,#8e5eff);
+      border:1px solid rgba(255,255,255,.18);
+    }
+
+    /* CTA */
+    .cta{
+      padding-top:24px;
+    }
+
+    .cta-box{
+      background:linear-gradient(135deg,#7c31f2 0%, #6f35f5 40%, #6b27df 100%);
+      color:#fff;
+      border-radius:24px;
+      padding:34px 34px 28px;
+      box-shadow:0 18px 40px rgba(111,53,245,.18);
+    }
+
+    .cta-box .pill{
+      background:rgba(255,255,255,.14);
+      color:#fff;
+    }
+
+    .cta-box h2,
+    .cta-box p{
+      color:#fff;
+      text-align:left;
+    }
+
+    .cta-box p{
+      opacity:.92;
+      max-width:740px;
+    }
+
+    .cta-form{
+      margin-top:22px;
+    }
+
+    .cta-form .btn-outline{
+      width:100%;
+      background:transparent;
+      border-color:#fff;
+      color:#fff;
+    }
+
+    .cta-form .btn-outline:hover{
+      background:rgba(255,255,255,.08);
+    }
+
+    .cta-note{
+      font-size:.9rem;
+      opacity:.8;
+      margin-top:12px;
+      text-align:center;
+    }
+
+    /* FOOTER */
+    footer{
+      background:#1d102f;
+      color:#fff;
+      margin-top:34px;
+      padding:34px 0 24px;
+    }
+
+    .footer-grid{
+      display:grid;
+      grid-template-columns:1.2fr repeat(4,1fr);
+      gap:24px;
+    }
+
+    .footer-col h5{
+      font-size:1rem;
+      margin-bottom:10px;
+    }
+
+    .footer-col a{
+      display:block;
+      color:#d8cfee;
+      margin:7px 0;
+      font-size:.94rem;
+    }
+
+    .footer-bottom{
+      margin-top:24px;
+      padding-top:16px;
+      border-top:1px solid rgba(255,255,255,.08);
+      display:flex;
+      justify-content:space-between;
+      gap:14px;
+      flex-wrap:wrap;
+      color:#d8cfee;
+      font-size:.92rem;
+    }
+
+    /* Reveal */
+    .reveal{
+      opacity:0;
+      transform:translateY(24px);
+      transition:all .7s ease;
+    }
+
+    .reveal.visible{
+      opacity:1;
+      transform:none;
+    }
+
+    /* Responsive */
+    @media (max-width: 980px){
+      .origin-grid,
+      .values-grid,
+      .philosophy-grid,
+      .footer-grid{
+        grid-template-columns:1fr;
+      }
+
+      .team-grid{
+        grid-template-columns:1fr 1fr;
+      }
+
+      .nav-links{
+        position:absolute;
+        top:70px;
+        left:0;
+        right:0;
+        background:rgba(252,251,255,.98);
+        border-bottom:1px solid rgba(223,206,255,.45);
+        padding:18px;
+        display:none;
+        flex-direction:column;
+        align-items:flex-start;
+      }
+
+      .nav-links.open{
+        display:flex;
+      }
+
+      .menu-toggle{
+        display:block;
+      }
+
+      .nav-cta{
+        display:none;
+      }
+    }
+
+    @media (max-width: 680px){
+      .section{padding:58px 0}
+      .hero-actions{
+        flex-direction:column;
+        max-width:100%;
+      }
+      .hero-actions .btn{
+        width:100%;
+      }
+      .team-grid,
+      .philosophy-cards{
+        grid-template-columns:1fr;
+      }
+      .cta-box{
+        padding:24px 20px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="nav-wrap">
+    <div class="container">
+      <nav>
+        <a href="#" class="brand">
+          <span class="logo"></span>
+          <span>South Yak</span>
+        </a>
+
+        <button class="menu-toggle" id="menuToggle">☰</button>
+
+        <div class="nav-links" id="navLinks">
+          <a href="#">Home</a>
+          <a href="#">Product</a>
+          <a href="#" class="active">Information</a>
+          <a href="#">Blog</a>
+          <a href="#">Support</a>
+        </div>
+
+        <a href="#contact" class="btn btn-primary nav-cta">Get Started ↗</a>
+      </nav>
+    </div>
+  </div>
+
+  <main>
+    <section class="hero">
+      <div class="container">
+        <div class="hero-inner reveal">
+          <span class="pill">♡ Our story</span>
+          <h1>Brave. <em>Kind.</em><br>Unforgettable.</h1>
+          <p>
+            We’re on a mission to change how you watch TV. Born from dorm rooms,
+            built for students, driven by kindness.
+          </p>
+
+          <div class="hero-actions">
+            <a href="#" class="btn btn-primary">Try it free →</a>
+            <a href="#" class="btn btn-outline">Watch demo</a>
+          </div>
+
+          <div class="rating">
+            <span class="star">☆</span>
+            <span>4.9/5 (200+ reviews)</span>
+          </div>
+
+          <div class="hero-line"></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="origin">
+      <div class="container">
+        <div class="center reveal">
+          <span class="eyebrow">Origin story</span>
+          <h2>Started in a dorm room</h2>
+        </div>
+
+        <div class="origin-grid">
+          <div class="reveal">
+            <p>
+              South Yak started in a cramped dorm room during finals week. Our founders—three college
+              students tired of watching shows alone—realized that TV could be more than just passive
+              entertainment. It could be a shared experience, a study tool, a way to stay connected.
+            </p>
+
+            <p class="quote">
+              "We built the product we wished existed. Something that combined our love for TV
+              with the reality of college life." — Alex, Co-founder
+            </p>
+          </div>
+
+          <div class="reveal">
+            <p>
+              What began as a weekend project quickly became a mission. We realized that thousands
+              of students felt the same way: frustrated with complicated setups, missing their friends,
+              and craving a better way to watch. Today, South Yak is trusted by over 10,000 students
+              across the country.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section values">
+      <div class="container">
+        <div class="center reveal">
+          <span class="eyebrow">What we believe</span>
+          <h2>Our values: Brave. <em>Kind.</em> Both.</h2>
+          <p>Every decision we make is guided by these two principles.</p>
+        </div>
+
+        <div class="values-grid">
+          <div class="value-card reveal">
+            <div class="icon">☼</div>
+            <h3>Brave</h3>
+            <p>
+              We take risks. We experiment.<br>
+              We push creative boundaries to bring you experiences you won't find anywhere else.
+            </p>
+            <ul class="check-list">
+              <li>Experiment with new creative techniques</li>
+              <li>Challenge how TV is traditionally viewed</li>
+              <li>Build features students actually want</li>
+              <li>Never settle for “good enough”</li>
+            </ul>
+          </div>
+
+          <div class="value-card reveal">
+            <div class="icon">☼</div>
+            <h3>Kind</h3>
+            <p>
+              We treat every user like a friend.<br>
+              No bots. No scripts. Just humans helping humans, always.
+            </p>
+            <ul class="check-list">
+              <li>Real humans on support team</li>
+              <li>2-hour response time guaranteed</li>
+              <li>Listen to user feedback</li>
+              <li>Built for students</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="team">
+      <div class="container">
+        <div class="center reveal">
+          <span class="eyebrow">Meet the team</span>
+          <h2>The humans behind the screen</h2>
+          <p>Dedicated, creative, and kind. We’re students and former students who get it.</p>
+        </div>
+
+        <div class="team-grid">
+          <div class="team-card reveal">
+            <div class="avatar"></div>
+            <h4>Alex Rivera</h4>
+            <div class="role">Co-founder & CEO</div>
+            <div class="links">
+              <a href="#">LinkedIn</a>
+              <a href="#">Twitter</a>
+            </div>
+          </div>
+
+          <div class="team-card reveal">
+            <div class="avatar"></div>
+            <h4>Maya Chen</h4>
+            <div class="role">Co-founder & CPO</div>
+            <div class="links">
+              <a href="#">LinkedIn</a>
+              <a href="#">Twitter</a>
+            </div>
+          </div>
+
+          <div class="team-card reveal">
+            <div class="avatar"></div>
+            <h4>Jordan Smith</h4>
+            <div class="role">Head of Support</div>
+            <div class="links">
+              <a href="#">LinkedIn</a>
+            </div>
+          </div>
+
+          <div class="team-card reveal">
+            <div class="avatar"></div>
+            <h4>Taylor Kim</h4>
+            <div class="role">Lead Engineer</div>
+            <div class="links">
+              <a href="#">GitHub</a>
+              <a href="#">Twitter</a>
+            </div>
+          </div>
+
+          <div class="team-card reveal">
+            <div class="avatar"></div>
+            <h4>Casey Wong</h4>
+            <div class="role">Community Manager</div>
+            <div class="links">
+              <a href="#">Discord</a>
+              <a href="#">Twitter</a>
+            </div>
+          </div>
+
+          <div class="team-card reveal">
+            <div class="avatar"></div>
+            <h4>Riley Johnson</h4>
+            <div class="role">Creative Director</div>
+            <div class="links">
+              <a href="#">LinkedIn</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section-sm" id="philosophy">
+      <div class="container">
+        <div class="reveal">
+          <span class="eyebrow">Our philosophy</span>
+          <h2>What drives us every day</h2>
+        </div>
+
+        <div class="philosophy-grid">
+          <div class="philosophy-cards">
+            <div class="mini-card reveal">
+              <div class="mini-icon">▣</div>
+              <h4>Student-first design</h4>
+              <p>
+                Every feature starts with a student need. We talk to users weekly.
+                We build what you actually want.
+              </p>
+            </div>
+
+            <div class="mini-card reveal">
+              <div class="mini-icon">♡</div>
+              <h4>Kindness in action</h4>
+              <p>
+                Support isn't a department. It's our identity. We measure success
+                by how happy our users are.
+              </p>
+            </div>
+
+            <div class="mini-card reveal">
+              <div class="mini-icon">☆</div>
+              <h4>Creative experimentation</h4>
+              <p>
+                We’re not afraid to try weird ideas. Some fail. Some become features.
+                You grow. That’s the point.
+              </p>
+            </div>
+
+            <div class="mini-card reveal">
+              <div class="mini-icon">✣</div>
+              <h4>Sustainable growth</h4>
+              <p>
+                We’re bootstrapped and proud. We grow thoughtfully, without
+                compromising our values.
+              </p>
+            </div>
+          </div>
+
+          <div class="showcase reveal">
+            <div class="showcase-window">
+              <div class="showcase-top">
+                <span></span><span></span><span></span>
+              </div>
+              <div class="showcase-body">
+                <div class="showcase-main"></div>
+
+                <div class="showcase-side">
+                  <div class="tile"></div>
+                  <div class="tile"></div>
+                  <div class="tile"></div>
+                  <div class="tile"></div>
+                </div>
+
+                <div class="showcase-bottom">
+                  <div class="small-tile"></div>
+                  <div class="small-tile"></div>
+                  <div class="small-tile"></div>
+                  <div class="small-tile"></div>
+                  <div class="small-tile"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section-sm cta" id="contact">
+      <div class="container">
+        <div class="cta-box reveal">
+          <span class="pill">✺ Get in touch</span>
+          <h2>Want to know more? We’d love to chat.</h2>
+          <p>
+            Whether you have questions, feedback, or just want to say hi,
+            our team is here and ready.
+          </p>
+
+          <div class="cta-form">
+            <button class="btn btn-outline" id="ctaButton">Secondary Button</button>
+          </div>
+
+          <div class="cta-note">We typically respond within 2 hours. No bots, just humans.</div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-col">
+          <h5>South Yak</h5>
+          <p style="color:#d8cfee;max-width:220px;">Inspiring new ways to watch TV.</p>
+        </div>
+
+        <div class="footer-col">
+          <h5>Features</h5>
+          <a href="#">How it works</a>
+          <a href="#">Pricing</a>
+          <a href="#">Product info</a>
+        </div>
+
+        <div class="footer-col">
+          <h5>Help center</h5>
+          <a href="#">Contact support</a>
+          <a href="#">Status</a>
+          <a href="#">Community</a>
+        </div>
+
+        <div class="footer-col">
+          <h5>Blog</h5>
+          <a href="#">Student program</a>
+          <a href="#">Guides</a>
+          <a href="#">Newsletter</a>
+        </div>
+
+        <div class="footer-col">
+          <h5>Legal</h5>
+          <a href="#">Privacy Policy</a>
+          <a href="#">Terms of Service</a>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <div>Privacy Policy* / Terms of Service</div>
+        <div>© 2025 South Yak. All rights reserved.</div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    const menuToggle = document.getElementById("menuToggle");
+    const navLinks = document.getElementById("navLinks");
+    const ctaButton = document.getElementById("ctaButton");
+
+    menuToggle.addEventListener("click", () => {
+      navLinks.classList.toggle("open");
+    });
+
+    document.querySelectorAll(".nav-links a").forEach(link => {
+      link.addEventListener("click", () => navLinks.classList.remove("open"));
+    });
+
+    const reveals = document.querySelectorAll(".reveal");
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if(entry.isIntersecting){
+          entry.target.classList.add("visible");
+        }
+      });
+    }, { threshold: 0.12 });
+
+    reveals.forEach(el => observer.observe(el));
+
+    ctaButton.addEventListener("click", () => {
+      alert("Thanks for reaching out! You can wire this button to a contact form or email link.");
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,1278 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>South Yak</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --bg:#fcfaff;
+      --bg-soft:#f6efff;
+      --panel:#ffffff;
+      --purple:#6f35f5;
+      --purple-dark:#5420d8;
+      --purple-soft:#eee3ff;
+      --text:#201636;
+      --muted:#6d6485;
+      --border:#dbcaff;
+      --shadow:0 12px 30px rgba(111,53,245,.10);
+      --radius-xl:28px;
+      --radius-lg:22px;
+      --radius-md:14px;
+      --container:1120px;
+    }
+
+    *{margin:0;padding:0;box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      font-family:"Outfit",sans-serif;
+      background:var(--bg);
+      color:var(--text);
+      line-height:1.5;
+    }
+    a{text-decoration:none;color:inherit}
+    img{max-width:100%;display:block}
+    .container{width:min(var(--container),calc(100% - 28px));margin:0 auto}
+    .section{padding:72px 0}
+    .section-sm{padding:54px 0}
+    .center{text-align:center}
+
+    .eyebrow{
+      display:inline-block;
+      font-size:11px;
+      text-transform:uppercase;
+      letter-spacing:.12em;
+      color:var(--purple);
+      margin-bottom:12px;
+      font-weight:700;
+    }
+
+    .pill{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      padding:8px 14px;
+      border-radius:999px;
+      background:#f0e7ff;
+      color:var(--purple);
+      font-size:12px;
+      font-weight:700;
+      margin-bottom:18px;
+    }
+
+    h1{
+      font-size:clamp(2.5rem, 6vw, 4.7rem);
+      line-height:.98;
+      letter-spacing:-.04em;
+      margin-bottom:18px;
+    }
+
+    h2{
+      font-size:clamp(1.9rem, 4vw, 3rem);
+      line-height:1.06;
+      letter-spacing:-.03em;
+      margin-bottom:12px;
+    }
+
+    h3{
+      font-size:1.35rem;
+      line-height:1.1;
+      margin-bottom:8px;
+      letter-spacing:-.02em;
+    }
+
+    p{
+      color:var(--muted);
+      font-size:1rem;
+    }
+
+    .highlight{color:var(--purple)}
+
+    .btn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap:8px;
+      padding:13px 22px;
+      border-radius:12px;
+      border:1.5px solid transparent;
+      font-family:inherit;
+      font-weight:700;
+      cursor:pointer;
+      transition:.25s ease;
+      white-space:nowrap;
+    }
+
+    .btn-primary{
+      background:var(--purple);
+      color:#fff;
+      box-shadow:0 10px 20px rgba(111,53,245,.22);
+    }
+
+    .btn-primary:hover{
+      background:var(--purple-dark);
+      transform:translateY(-1px);
+    }
+
+    .btn-outline{
+      background:#fff;
+      color:var(--purple);
+      border-color:var(--purple);
+    }
+
+    .btn-outline:hover{
+      background:#faf6ff;
+    }
+
+    /* NAV */
+    .nav-wrap{
+      position:sticky;
+      top:0;
+      z-index:1000;
+      background:rgba(252,250,255,.92);
+      backdrop-filter:blur(10px);
+      border-bottom:1px solid rgba(219,202,255,.45);
+    }
+
+    nav{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      height:68px;
+      gap:18px;
+    }
+
+    .brand{
+      display:flex;
+      align-items:center;
+      gap:10px;
+      color:var(--purple);
+      font-weight:800;
+      font-size:1.65rem;
+    }
+
+    .logo{
+      width:20px;height:20px;
+      border:2px solid var(--purple);
+      border-radius:6px;
+      position:relative;
+      transform:rotate(-8deg);
+    }
+
+    .logo::after{
+      content:"";
+      position:absolute;
+      width:8px;height:8px;
+      border-top:2px solid var(--purple);
+      border-right:2px solid var(--purple);
+      top:-5px;right:-1px;
+      border-radius:2px;
+    }
+
+    .nav-links{
+      display:flex;
+      align-items:center;
+      gap:22px;
+      font-size:.92rem;
+      font-weight:600;
+    }
+
+    .nav-links a:hover{color:var(--purple)}
+    .menu-toggle{
+      display:none;
+      background:none;
+      border:none;
+      font-size:26px;
+      color:var(--purple);
+      cursor:pointer;
+    }
+
+    /* HERO */
+    .hero{
+      padding:36px 0 50px;
+    }
+
+    .hero-grid{
+      display:grid;
+      grid-template-columns:1fr 1.08fr;
+      gap:34px;
+      align-items:center;
+    }
+
+    .hero-copy p{
+      max-width:480px;
+      margin-bottom:22px;
+    }
+
+    .hero-actions{
+      display:flex;
+      gap:12px;
+      flex-wrap:wrap;
+      margin-bottom:12px;
+    }
+
+    .hero-note{
+      font-size:.92rem;
+      color:var(--muted);
+      display:flex;
+      align-items:center;
+      gap:8px;
+    }
+
+    .hero-note::before{
+      content:"✦";
+      color:var(--purple);
+    }
+
+    .browser{
+      background:#fff;
+      border:1.5px solid var(--border);
+      border-radius:0;
+      box-shadow:var(--shadow);
+      overflow:hidden;
+    }
+
+    .browser-top{
+      background:#e9dcff;
+      height:18px;
+      display:flex;
+      align-items:center;
+      padding:0 10px;
+      gap:5px;
+    }
+
+    .dot{
+      width:8px;height:8px;border-radius:50%;
+      background:#cab0ff;
+    }
+
+    .browser-body{
+      aspect-ratio: 16 / 9;
+      background:
+        radial-gradient(circle at 75% 28%, rgba(173,220,255,.85), transparent 16%),
+        radial-gradient(circle at 88% 36%, rgba(255,245,190,.8), transparent 10%),
+        linear-gradient(135deg, #faf8ff 0%, #f0e8ff 30%, #f8fbff 100%);
+      position:relative;
+      padding:20px;
+    }
+
+    .swirl{
+      position:absolute;
+      border-radius:999px;
+      border:8px solid rgba(163,126,255,.65);
+      transform:rotate(22deg);
+      filter:blur(.2px);
+    }
+
+    .swirl.s1{width:180px;height:54px;left:170px;top:54px}
+    .swirl.s2{width:120px;height:36px;left:225px;top:88px;border-color:rgba(200,234,255,.95)}
+    .swirl.s3{width:230px;height:70px;left:150px;top:85px;border-color:rgba(209,192,255,.8)}
+
+    .thumb-grid{
+      position:absolute;
+      left:18px;
+      right:18px;
+      bottom:16px;
+      display:grid;
+      grid-template-columns:repeat(4,1fr);
+      gap:8px;
+    }
+
+    .thumb{
+      height:54px;
+      border-radius:8px;
+      overflow:hidden;
+      position:relative;
+      background:linear-gradient(135deg,#6a34ef,#a87cff 65%, #d8c8ff);
+      border:1px solid rgba(84,32,216,.15);
+      box-shadow:0 4px 10px rgba(111,53,245,.08);
+    }
+
+    .thumb::before{
+      content:"";
+      position:absolute;
+      inset:0;
+      background:
+        radial-gradient(circle at 70% 30%, rgba(255,255,255,.6), transparent 16%),
+        linear-gradient(180deg,rgba(255,255,255,.12),transparent 60%);
+    }
+
+    .play{
+      position:absolute;
+      left:8px;
+      top:8px;
+      width:24px;height:24px;
+      border-radius:50%;
+      background:rgba(255,255,255,.85);
+      display:grid;
+      place-items:center;
+      color:var(--purple);
+      font-size:11px;
+      font-weight:700;
+    }
+
+    .thumb-label{
+      position:absolute;
+      left:8px;
+      bottom:6px;
+      right:8px;
+      height:6px;
+      border-radius:999px;
+      background:rgba(255,255,255,.45);
+    }
+
+    .big-thumb{
+      position:absolute;
+      left:18px;
+      top:18px;
+      width:138px;
+      height:82px;
+      border-radius:10px;
+      background:linear-gradient(135deg,#5e2fe8,#9874ff,#d6cbff);
+      overflow:hidden;
+      border:1px solid rgba(84,32,216,.15);
+    }
+
+    .big-thumb .play{
+      width:34px;height:34px;
+      left:14px;top:24px;
+      font-size:15px;
+    }
+
+    /* intro stats */
+    .intro{
+      padding-top:28px;
+    }
+
+    .intro p.lead{
+      max-width:760px;
+      margin:0 auto 26px;
+      text-align:center;
+    }
+
+    .stats{
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      gap:16px;
+      max-width:760px;
+      margin:0 auto;
+    }
+
+    .stat{
+      background:#efe4ff;
+      border-radius:16px;
+      padding:24px 18px;
+      text-align:left;
+    }
+
+    .stat .mini-icon{
+      width:28px;height:28px;
+      border-radius:10px;
+      background:#e0d1ff;
+      color:var(--purple);
+      display:grid;
+      place-items:center;
+      margin-bottom:16px;
+      font-size:14px;
+      font-weight:800;
+    }
+
+    .stat strong{
+      display:block;
+      font-size:2rem;
+      line-height:1;
+      margin-bottom:6px;
+    }
+
+    .stat span{
+      color:#4e4367;
+      font-size:.95rem;
+    }
+
+    /* feature cards */
+    .features-grid{
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      gap:18px;
+      margin-top:26px;
+    }
+
+    .feature-card{
+      background:#fff;
+      border-radius:18px;
+      padding:26px;
+      box-shadow:var(--shadow);
+      border:1.5px solid #f0e7ff;
+      min-height:440px;
+      display:flex;
+      flex-direction:column;
+    }
+
+    .icon{
+      width:42px;height:42px;
+      border-radius:13px;
+      display:grid;
+      place-items:center;
+      background:#f1e7ff;
+      color:var(--purple);
+      font-weight:800;
+      margin:0 auto 18px;
+    }
+
+    .feature-card h3,
+    .feature-card p{
+      text-align:center;
+    }
+
+    .bullets{
+      list-style:none;
+      margin:18px 0 20px;
+      display:grid;
+      gap:8px;
+    }
+
+    .bullets li{
+      color:#483d61;
+      font-size:.96rem;
+      position:relative;
+      padding-left:22px;
+    }
+
+    .bullets li::before{
+      content:"✓";
+      position:absolute;
+      left:0;
+      top:0;
+      color:var(--purple);
+      font-weight:800;
+    }
+
+    .feature-shot{
+      margin-top:auto;
+      height:110px;
+      border-radius:12px;
+      background:
+        linear-gradient(135deg,#5d2be4,#8d67fb 65%,#ded5ff),
+        #fff;
+      border:1.5px solid #ceb6ff;
+      position:relative;
+      overflow:hidden;
+    }
+
+    .feature-shot::before{
+      content:"";
+      position:absolute;
+      inset:12px;
+      border-radius:8px;
+      background:
+        linear-gradient(90deg, rgba(255,255,255,.22) 0 28%, transparent 28% 31%, rgba(255,255,255,.18) 31% 100%),
+        radial-gradient(circle at 70% 30%, rgba(255,255,255,.55), transparent 14%),
+        rgba(30,16,56,.18);
+    }
+
+    .feature-shot::after{
+      content:"▶";
+      position:absolute;
+      width:28px;height:28px;
+      border-radius:50%;
+      left:14px;top:14px;
+      background:#fff;
+      color:var(--purple);
+      display:grid;
+      place-items:center;
+      font-size:12px;
+      font-weight:800;
+    }
+
+    /* steps */
+    .steps-grid{
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      gap:18px;
+      margin-top:26px;
+    }
+
+    .step{
+      background:#efe4ff;
+      border-radius:14px;
+      padding:26px 20px;
+      text-align:center;
+    }
+
+    .step .num{
+      color:var(--purple);
+      font-size:3rem;
+      line-height:1;
+      font-weight:800;
+      margin-bottom:8px;
+    }
+
+    /* pricing */
+    .pricing-wrap{
+      background:#faf7ff;
+    }
+
+    .pricing-grid{
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      gap:18px;
+      margin-top:28px;
+    }
+
+    .price-card{
+      background:#fff;
+      border:1.5px solid #eadcff;
+      box-shadow:var(--shadow);
+      border-radius:18px;
+      padding:28px 24px;
+      display:flex;
+      flex-direction:column;
+      min-height:430px;
+    }
+
+    .price-card .icon{
+      margin-left:auto;
+      margin-right:auto;
+    }
+
+    .price-card h3, .price-card p{
+      text-align:center;
+    }
+
+    .price{
+      text-align:center;
+      margin:14px 0 14px;
+    }
+
+    .price strong{
+      font-size:3rem;
+      line-height:1;
+      letter-spacing:-.04em;
+    }
+
+    .price small{
+      display:block;
+      color:var(--muted);
+      margin-top:4px;
+    }
+
+    .price-card .btn{
+      margin-top:auto;
+      align-self:center;
+    }
+
+    /* testimonials */
+    .testimonials-grid{
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      gap:18px;
+      margin-top:28px;
+    }
+
+    .testimonial{
+      background:#fff;
+      border:1.5px solid #f0e7ff;
+      border-radius:16px;
+      overflow:hidden;
+      box-shadow:0 10px 22px rgba(111,53,245,.06);
+    }
+
+    .avatar{
+      height:160px;
+      background:
+        radial-gradient(circle at 70% 20%, rgba(255,255,255,.45), transparent 20%),
+        linear-gradient(135deg,#b58aff,#f3efe8 45%, #d8bfa7 100%);
+      position:relative;
+    }
+
+    .avatar::after{
+      content:"";
+      position:absolute;
+      inset:18px 26px;
+      border-radius:18px;
+      background:
+        radial-gradient(circle at 50% 28%, #3b2a25 0 18%, transparent 19%),
+        radial-gradient(circle at 50% 42%, #f1c9a8 0 24%, transparent 25%),
+        radial-gradient(circle at 50% 82%, #6e8fb3 0 28%, transparent 29%),
+        linear-gradient(180deg, transparent 0 42%, rgba(20,20,20,.05) 42% 100%);
+      background-repeat:no-repeat;
+    }
+
+    .testimonial:nth-child(2) .avatar::after,
+    .testimonial:nth-child(5) .avatar::after{
+      background:
+        radial-gradient(circle at 50% 28%, #2b221f 0 18%, transparent 19%),
+        radial-gradient(circle at 50% 42%, #e8bf9d 0 24%, transparent 25%),
+        radial-gradient(circle at 50% 82%, #7d9286 0 28%, transparent 29%),
+        linear-gradient(180deg, transparent 0 42%, rgba(20,20,20,.05) 42% 100%);
+    }
+
+    .testimonial:nth-child(3) .avatar::after,
+    .testimonial:nth-child(6) .avatar::after{
+      background:
+        radial-gradient(circle at 50% 28%, #6b4a33 0 18%, transparent 19%),
+        radial-gradient(circle at 50% 42%, #efc8a7 0 24%, transparent 25%),
+        radial-gradient(circle at 50% 82%, #4e769a 0 28%, transparent 29%),
+        linear-gradient(180deg, transparent 0 42%, rgba(20,20,20,.05) 42% 100%);
+    }
+
+    .testimonial-body{
+      padding:16px;
+    }
+
+    .tag{
+      display:inline-block;
+      font-size:11px;
+      font-weight:700;
+      color:var(--purple);
+      background:#efe4ff;
+      padding:5px 9px;
+      border-radius:999px;
+      margin-bottom:10px;
+    }
+
+    .testimonial h4{
+      font-size:1.2rem;
+      margin-bottom:2px;
+    }
+
+    .school{
+      font-size:.92rem;
+      color:var(--muted);
+      margin-bottom:10px;
+    }
+
+    /* FAQ */
+    .faq-grid{
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      gap:12px;
+      margin-top:26px;
+    }
+
+    .faq-item{
+      background:#fff;
+      border:1.5px solid #eadcff;
+      border-radius:12px;
+      box-shadow:0 8px 18px rgba(111,53,245,.06);
+      overflow:hidden;
+    }
+
+    .faq-question{
+      width:100%;
+      text-align:left;
+      background:#fff;
+      border:none;
+      padding:16px 16px;
+      font:inherit;
+      color:var(--text);
+      display:flex;
+      align-items:center;
+      gap:12px;
+      cursor:pointer;
+      font-weight:600;
+    }
+
+    .faq-plus{
+      color:var(--purple);
+      font-size:1.1rem;
+      font-weight:800;
+    }
+
+    .faq-answer{
+      max-height:0;
+      overflow:hidden;
+      transition:max-height .28s ease;
+      padding:0 16px;
+    }
+
+    .faq-item.open .faq-answer{
+      max-height:140px;
+      padding:0 16px 16px;
+    }
+
+    /* footer */
+    footer{
+      background:#1d102f;
+      color:#fff;
+      padding:34px 0 24px;
+      margin-top:72px;
+    }
+
+    .footer-grid{
+      display:grid;
+      grid-template-columns:1.2fr repeat(4,1fr);
+      gap:24px;
+    }
+
+    .footer-col h5{
+      margin-bottom:10px;
+      font-size:1rem;
+    }
+
+    .footer-col a{
+      display:block;
+      color:#d9d1eb;
+      font-size:.94rem;
+      margin:7px 0;
+    }
+
+    .footer-bottom{
+      margin-top:24px;
+      padding-top:16px;
+      border-top:1px solid rgba(255,255,255,.08);
+      display:flex;
+      justify-content:space-between;
+      flex-wrap:wrap;
+      gap:12px;
+      color:#d9d1eb;
+      font-size:.92rem;
+    }
+
+    /* reveal */
+    .reveal{
+      opacity:0;
+      transform:translateY(24px);
+      transition:all .7s ease;
+    }
+    .reveal.visible{
+      opacity:1;
+      transform:none;
+    }
+
+    /* responsive */
+    @media (max-width: 980px){
+      .hero-grid,
+      .features-grid,
+      .steps-grid,
+      .pricing-grid,
+      .testimonials-grid,
+      .faq-grid,
+      .stats,
+      .footer-grid{
+        grid-template-columns:1fr;
+      }
+
+      .nav-links{
+        position:absolute;
+        top:68px;
+        left:0;
+        right:0;
+        background:rgba(252,250,255,.98);
+        border-bottom:1px solid rgba(219,202,255,.5);
+        padding:18px;
+        display:none;
+        flex-direction:column;
+        align-items:flex-start;
+      }
+
+      .nav-links.open{display:flex}
+      .menu-toggle{display:block}
+      .nav-cta{display:none}
+    }
+
+    @media (max-width: 640px){
+      .section{padding:56px 0}
+      nav{height:64px}
+      .hero{padding-top:24px}
+      .hero-actions{flex-direction:column}
+      .hero-actions .btn{width:100%}
+      .thumb-grid{grid-template-columns:repeat(2,1fr)}
+      .big-thumb{position:relative;left:auto;top:auto;width:100%;margin-bottom:14px}
+      .browser-body{padding:14px}
+      .avatar{height:140px}
+    }
+  </style>
+</head>
+<body>
+
+  <div class="nav-wrap">
+    <div class="container">
+      <nav>
+        <a href="#" class="brand">
+          <span class="logo"></span>
+          <span>South Yak</span>
+        </a>
+
+        <button class="menu-toggle" id="menuToggle">☰</button>
+
+        <div class="nav-links" id="navLinks">
+          <a href="#home">Home</a>
+          <a href="#product">Product</a>
+          <a href="#information">Information</a>
+          <a href="#blog">Blog</a>
+          <a href="#support">Support</a>
+        </div>
+
+        <a href="#pricing" class="btn btn-primary nav-cta">Get Started ↗</a>
+      </nav>
+    </div>
+  </div>
+
+  <main id="home">
+    <section class="hero">
+      <div class="container hero-grid">
+        <div class="hero-copy reveal">
+          <span class="pill">✦ It's like TV was built online</span>
+          <h1>TV, <span class="highlight">reimagined</span> for your browser</h1>
+          <p>
+            Open South Yak in your browser and start instantly. Enjoy new ways to watch TV,
+            made for the student life.
+          </p>
+          <div class="hero-actions">
+            <a href="#" class="btn btn-primary">Try it free →</a>
+            <a href="#" class="btn btn-outline">Watch demo</a>
+          </div>
+          <div class="hero-note">No install. No cost.</div>
+        </div>
+
+        <div class="browser reveal">
+          <div class="browser-top">
+            <span class="dot"></span>
+            <span class="dot"></span>
+            <span class="dot"></span>
+          </div>
+          <div class="browser-body">
+            <div class="big-thumb">
+              <span class="play">▶</span>
+            </div>
+
+            <div class="swirl s1"></div>
+            <div class="swirl s2"></div>
+            <div class="swirl s3"></div>
+
+            <div class="thumb-grid">
+              <div class="thumb"><span class="play">▶</span><span class="thumb-label"></span></div>
+              <div class="thumb"><span class="play">▶</span><span class="thumb-label"></span></div>
+              <div class="thumb"><span class="play">▶</span><span class="thumb-label"></span></div>
+              <div class="thumb"><span class="play">▶</span><span class="thumb-label"></span></div>
+              <div class="thumb"><span class="play">▶</span><span class="thumb-label"></span></div>
+              <div class="thumb"><span class="play">▶</span><span class="thumb-label"></span></div>
+              <div class="thumb"><span class="play">▶</span><span class="thumb-label"></span></div>
+              <div class="thumb"><span class="play">▶</span><span class="thumb-label"></span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="intro section-sm">
+      <div class="container">
+        <div class="center reveal">
+          <span class="eyebrow">What it's like</span>
+          <h2>A <span class="highlight">dedicated</span> team. Effortless watching.<br><span class="highlight">Creative</span> techniques.</h2>
+          <p class="lead">
+            South Yak is a browser-based TV platform that combines a friendly support team with effortless ease.
+            No clunky setup. But lots of cleverness to help you discover content.
+          </p>
+        </div>
+
+        <div class="stats">
+          <div class="stat reveal">
+            <div class="mini-icon">▣</div>
+            <strong>10,000+</strong>
+            <span>Active student accounts</span>
+          </div>
+          <div class="stat reveal">
+            <div class="mini-icon">✦</div>
+            <strong>4.9/5</strong>
+            <span>User rating</span>
+          </div>
+          <div class="stat reveal">
+            <div class="mini-icon">⌁</div>
+            <strong>24/7</strong>
+            <span>Support available</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="product">
+      <div class="container">
+        <div class="center reveal">
+          <span class="eyebrow">Features</span>
+          <h2>Made for how you watch</h2>
+          <p>Every feature is built with students in mind.</p>
+        </div>
+
+        <div class="features-grid">
+          <div class="feature-card reveal">
+            <div class="icon">✣</div>
+            <h3>Watch Parties</h3>
+            <p>Sync playback with friends across dorms. Chat while you watch. Never miss a scene.</p>
+            <ul class="bullets">
+              <li>Sync with up to 20 friends</li>
+              <li>Built-in chat sidebar</li>
+              <li>Host from browser</li>
+              <li>Perfect for movie nights, shows, & sports</li>
+            </ul>
+            <div class="feature-shot"></div>
+          </div>
+
+          <div class="feature-card reveal">
+            <div class="icon">▣</div>
+            <h3>Second Screen</h3>
+            <p>Use your phone as a remote, keyboard, or mini companion for TV experiences.</p>
+            <ul class="bullets">
+              <li>Wireless remote control</li>
+              <li>Keyboard + mouse</li>
+              <li>Discover while watching shows</li>
+              <li>Quick links to actions</li>
+            </ul>
+            <div class="feature-shot"></div>
+          </div>
+
+          <div class="feature-card reveal">
+            <div class="icon">☻</div>
+            <h3>Study Mode</h3>
+            <p>Turn watching into better studying with notes, clips, and focused playback.</p>
+            <ul class="bullets">
+              <li>Create groups and highlights</li>
+              <li>Take timestamped notes</li>
+              <li>Clip scenes for class</li>
+              <li>Organize by course</li>
+            </ul>
+            <div class="feature-shot"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section-sm">
+      <div class="container">
+        <div class="center reveal">
+          <span class="eyebrow">Get started</span>
+          <h2>Start watching in 3 minutes</h2>
+          <p>No school IT help required. No downloads. Just press “Try free.”</p>
+        </div>
+
+        <div class="steps-grid">
+          <div class="step reveal">
+            <div class="num">1</div>
+            <h3>Create account</h3>
+            <p>Sign up with your .edu email or student login. Takes 60 seconds.</p>
+          </div>
+          <div class="step reveal">
+            <div class="num">2</div>
+            <h3>Connect your TV</h3>
+            <p>Wireless streaming. One click to mirror or cast.</p>
+          </div>
+          <div class="step reveal">
+            <div class="num">3</div>
+            <h3>Start watching</h3>
+            <p>Explore new ways to watch, share, and discover.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section pricing-wrap" id="pricing">
+      <div class="container">
+        <div class="center reveal">
+          <span class="eyebrow">Pricing</span>
+          <h2>Choose the plan that fits you</h2>
+          <p>All plans include the same kind human support experience.</p>
+        </div>
+
+        <div class="pricing-grid">
+          <div class="price-card reveal">
+            <div class="icon">✣</div>
+            <h3>Free</h3>
+            <p>Basic streaming tools for casual viewers.</p>
+            <ul class="bullets">
+              <li>Basic streaming</li>
+              <li>Watch with one friend</li>
+              <li>Standard player</li>
+              <li>Student support</li>
+            </ul>
+            <div class="price">
+              <strong>$0</strong>
+              <small>/ month</small>
+            </div>
+            <a href="#" class="btn btn-outline">Get started</a>
+          </div>
+
+          <div class="price-card reveal">
+            <div class="icon">✣</div>
+            <h3>Student</h3>
+            <p>Verified .edu email required.</p>
+            <ul class="bullets">
+              <li>Everything in Free</li>
+              <li>Watch parties up to 20</li>
+              <li>Study mode</li>
+              <li>Second screen</li>
+              <li>Priority support</li>
+              <li>No ads</li>
+            </ul>
+            <div class="price">
+              <strong>$4.99</strong>
+              <small>/ month</small>
+            </div>
+            <a href="#" class="btn btn-outline">Start free trial →</a>
+          </div>
+
+          <div class="price-card reveal">
+            <div class="icon">✣</div>
+            <h3>Premium</h3>
+            <p>Full access to everything.</p>
+            <ul class="bullets">
+              <li>Everything in Student</li>
+              <li>Watch parties unlimited</li>
+              <li>Access more layouts</li>
+              <li>Smarter sync</li>
+              <li>24/7 priority support</li>
+              <li>Early access features</li>
+            </ul>
+            <div class="price">
+              <strong>$9.99</strong>
+              <small>/ month</small>
+            </div>
+            <a href="#" class="btn btn-outline">Start free trial →</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="blog">
+      <div class="container">
+        <div class="center reveal">
+          <span class="eyebrow">Testimonials</span>
+          <h2>Loved by students everywhere</h2>
+          <p>Designed with student habits and dorm life in mind.</p>
+        </div>
+
+        <div class="testimonials-grid">
+          <div class="testimonial reveal">
+            <div class="avatar"></div>
+            <div class="testimonial-body">
+              <span class="tag">College life</span>
+              <h4>Alex Chen</h4>
+              <div class="school">University of Chicago</div>
+              <p>“Watch parties are my thing. South Yak makes it feel like we’re all in the same room.”</p>
+            </div>
+          </div>
+
+          <div class="testimonial reveal">
+            <div class="avatar"></div>
+            <div class="testimonial-body">
+              <span class="tag">College life</span>
+              <h4>Maya Patel</h4>
+              <div class="school">UCLA</div>
+              <p>“Study mode is a game changer. I finally watch clips and keep notes in one place.”</p>
+            </div>
+          </div>
+
+          <div class="testimonial reveal">
+            <div class="avatar"></div>
+            <div class="testimonial-body">
+              <span class="tag">College life</span>
+              <h4>Jordan Taylor</h4>
+              <div class="school">NYU</div>
+              <p>“The support team actually responds with help, not canned replies. Huge difference.”</p>
+            </div>
+          </div>
+
+          <div class="testimonial reveal">
+            <div class="avatar"></div>
+            <div class="testimonial-body">
+              <span class="tag">College life</span>
+              <h4>Sam Rivera</h4>
+              <div class="school">UT Austin</div>
+              <p>“No downloads or setup drama. It just works when people are already in my room.”</p>
+            </div>
+          </div>
+
+          <div class="testimonial reveal">
+            <div class="avatar"></div>
+            <div class="testimonial-body">
+              <span class="tag">College life</span>
+              <h4>Taylor Kim</h4>
+              <div class="school">Penn State</div>
+              <p>“Second screen features are surprisingly useful during presentations and class review.”</p>
+            </div>
+          </div>
+
+          <div class="testimonial reveal">
+            <div class="avatar"></div>
+            <div class="testimonial-body">
+              <span class="tag">College life</span>
+              <h4>Casey Wong</h4>
+              <div class="school">UC Berkeley</div>
+              <p>“We use watch parties almost every weekend. It feels way more social than streaming alone.”</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section-sm" id="support">
+      <div class="container">
+        <div class="center reveal">
+          <span class="eyebrow">FAQ</span>
+          <h2>Got questions? We’ve got answers</h2>
+          <p>Everything you need to know before you start watching.</p>
+        </div>
+
+        <div class="faq-grid">
+          <div class="faq-item reveal">
+            <button class="faq-question">
+              <span class="faq-plus">+</span>
+              <span>Do I need any special hardware?</span>
+            </button>
+            <div class="faq-answer">
+              <p>Nope. South Yak works right in your browser and supports most modern TVs or casting devices.</p>
+            </div>
+          </div>
+
+          <div class="faq-item reveal">
+            <button class="faq-question">
+              <span class="faq-plus">+</span>
+              <span>Is there a student discount?</span>
+            </button>
+            <div class="faq-answer">
+              <p>Yes — our Student plan is discounted for verified .edu users.</p>
+            </div>
+          </div>
+
+          <div class="faq-item reveal">
+            <button class="faq-question">
+              <span class="faq-plus">+</span>
+              <span>Can I watch with friends who don't have South Yak?</span>
+            </button>
+            <div class="faq-answer">
+              <p>Yes. Hosts can invite friends to join selected sessions depending on the plan.</p>
+            </div>
+          </div>
+
+          <div class="faq-item reveal">
+            <button class="faq-question">
+              <span class="faq-plus">+</span>
+              <span>How does Study Mode work?</span>
+            </button>
+            <div class="faq-answer">
+              <p>It lets you take notes, save clips, and organize viewing by topic or course.</p>
+            </div>
+          </div>
+
+          <div class="faq-item reveal">
+            <button class="faq-question">
+              <span class="faq-plus">+</span>
+              <span>Is my data safe?</span>
+            </button>
+            <div class="faq-answer">
+              <p>Yes. We use secure authentication and keep data collection minimal.</p>
+            </div>
+          </div>
+
+          <div class="faq-item reveal">
+            <button class="faq-question">
+              <span class="faq-plus">+</span>
+              <span>Can I cancel anytime?</span>
+            </button>
+            <div class="faq-answer">
+              <p>Absolutely. There are no contracts, and you can cancel from your account dashboard.</p>
+            </div>
+          </div>
+
+          <div class="faq-item reveal">
+            <button class="faq-question">
+              <span class="faq-plus">+</span>
+              <span>What devices are supported?</span>
+            </button>
+            <div class="faq-answer">
+              <p>Chrome, Safari, Firefox, Edge, phones, tablets, laptops, and most smart TVs.</p>
+            </div>
+          </div>
+
+          <div class="faq-item reveal">
+            <button class="faq-question">
+              <span class="faq-plus">+</span>
+              <span>Is there a free trial?</span>
+            </button>
+            <div class="faq-answer">
+              <p>Yes — paid plans can include a free trial depending on promotions.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-col">
+          <h5>South Yak</h5>
+          <p style="color:#d9d1eb;max-width:220px;">Inspiring new ways to watch TV.</p>
+        </div>
+
+        <div class="footer-col">
+          <h5>Features</h5>
+          <a href="#">How it works</a>
+          <a href="#">Pricing</a>
+          <a href="#">Product info</a>
+        </div>
+
+        <div class="footer-col">
+          <h5>Help center</h5>
+          <a href="#">Contact support</a>
+          <a href="#">Status</a>
+          <a href="#">Community</a>
+        </div>
+
+        <div class="footer-col">
+          <h5>Blog</h5>
+          <a href="#">Student program</a>
+          <a href="#">Guides</a>
+          <a href="#">Newsletter</a>
+        </div>
+
+        <div class="footer-col">
+          <h5>Legal</h5>
+          <a href="#">Privacy Policy</a>
+          <a href="#">Terms of Service</a>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <div>Privacy Policy* / Terms of Service</div>
+        <div>© 2025 South Yak. All rights reserved.</div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    const menuToggle = document.getElementById("menuToggle");
+    const navLinks = document.getElementById("navLinks");
+
+    menuToggle.addEventListener("click", () => {
+      navLinks.classList.toggle("open");
+    });
+
+    document.querySelectorAll(".nav-links a").forEach(link => {
+      link.addEventListener("click", () => navLinks.classList.remove("open"));
+    });
+
+    const reveals = document.querySelectorAll(".reveal");
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("visible");
+        }
+      });
+    }, { threshold: 0.12 });
+
+    reveals.forEach(el => observer.observe(el));
+
+    document.querySelectorAll(".faq-item").forEach(item => {
+      const btn = item.querySelector(".faq-question");
+      btn.addEventListener("click", () => {
+        item.classList.toggle("open");
+      });
+    });
+  </script>
+</body>
+</html>
